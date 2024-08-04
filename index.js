@@ -27,11 +27,15 @@ searchButton.addEventListener("click", async function(e) {
     const city = document.querySelector("input").value;
     const data = await getWeather(city);
     document.querySelector("#city").textContent = data.address;
-    document.querySelector("#temp").textContent = `${data.currentConditions.temp}°C`;
+    document.querySelector("#temp").textContent = `${Math.round(data.currentConditions.temp)}°C`;
     document.querySelector("#description").textContent = data.currentConditions.conditions;
     const icon = document.querySelector("img");
     icon.src = `weather-icons/${data.currentConditions.icon}.svg`;
     icon.style.display = "block";
+    document.querySelector("#feels-like").textContent = `Feels like: ${Math.round(data.currentConditions.feelslike)}°C`;
+    document.querySelector("#humidity").textContent = `Humidity: ${data.currentConditions.humidity}%`;
+    document.querySelector("#wind").textContent = `Wind: ${data.currentConditions.windspeed} km/h`;
+
     
     
 });
@@ -49,7 +53,7 @@ document.addEventListener("DOMContentLoaded", async function() {
     document.querySelector("#feels-like").textContent = `Feels like: ${Math.round(data.currentConditions.feelslike)} °C`;
     document.querySelector("#humidity").textContent = `Humidity: ${data.currentConditions.humidity}%`;
     document.querySelector("#wind").textContent = `Wind: ${data.currentConditions.windspeed} km/h`;
-    console.log(data);
+    
 });
 
 
